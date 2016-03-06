@@ -18,9 +18,9 @@ module.exports = Doi2bib =
 
         if editor = atom.workspace.getActiveTextEditor()
             doi = editor.getSelectedText()
-            
+
             # TODO: Make the matches more correct
-            if not doi.match(/^10\..*/) or doi.match(/.*\s.*/)
+            if not doi.match(/^10\..*/) or doi.match(/\s+/)
                 notifications.addError("Selected text does not seem like a DOI")
                 return null
 
