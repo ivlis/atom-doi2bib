@@ -1,0 +1,19 @@
+{
+  "name": "doi2bib",
+  "main": "./lib/doi2bib",
+  "version": "0.0.0",
+  "description": "Look up a bibliographic record by a DOI string",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "doi2bib:convert"
+  },
+  "repository": "https://github.com/atom/doi2bib",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+      "request": "2.69.0"
+  }
+}
