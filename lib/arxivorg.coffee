@@ -3,13 +3,16 @@ module.exports = (arxivId, onSuccess, onError) ->
     options =
         url: url
 
-    parseXml = (xml) ->
-        {parseString} = require 'xml2js'
-        parseString xml, (err, result) ->
-            console.dir result
-            authors = (author.name[0] for author in result.feed.entry[0].author).join(' and ')
-            title = result.feed.entry[0].title[0]
-            year = result.feed.entry[0].published[0].match(/^(\d{4})-\d{2}-\d{2}T/)
+    xml2bibtex = (error, xml) ->
+        # console.dir xml
+        if error
+            onError "Error parsing xml from arXiv.org"
+        else if not xml.feed.entry[0].title
+            onError "arXiv.org id does not exist"
+        else
+            authors = (author.name[0] for author in xml.feed.entry[0].author).join(' and ')
+            title = xml.feed.entry[0].title[0]
+            year = xml.feed.entry[0].published[0].match(/^(\d{4})-\d{2}-\d{2}T/)
             bibitem = "
 @Unpublished{bib:#{arxivId},\n\t
     author = \"#{authors}\",\n\t
@@ -24,12 +27,9 @@ module.exports = (arxivId, onSuccess, onError) ->
     request = require 'request'
     request options, (error, response, body) ->
         if error
-            onError("Request error")
-        else if response.statusCode == 404
-            onError("arXiv.org id cannot be found on server")
-        else if response.statusCode == 200
-            xml = body
-            parseXml(xml)
+            onError "Request error"
+        else if response.statusCode != 200
+            onError "arXiv.org returned an error"
         else
-            onError("Server returned an error")
-            console.error response.statusCode
+            {parseString} = require 'xml2js'
+            parseString body, xml2bibtex
