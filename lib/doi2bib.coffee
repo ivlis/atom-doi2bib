@@ -29,7 +29,7 @@ module.exports = Doi2bib =
 
             if doi.match(/^10\..*/) and not doi.match(/\s+/)
                 f = require './dxdoiorg'
-            if doi.match(/^\d{4}\.\d{4,5}$/)
+            if doi.match(/^\d{4}\.\d{4,5}$/) or doi.match(/^\S+\/\d{7}$/)
                 f = require './arxivorg'
 
             if f is null
