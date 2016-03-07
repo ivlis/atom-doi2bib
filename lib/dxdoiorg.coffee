@@ -13,7 +13,7 @@ module.exports = (doi, onSuccess, onError) ->
             onError("DOI cannot be found on server")
         else if response.statusCode == 200
             bibitem = body.replace /},\ /g, "},\n\t"
-            onSuccess(bibitem)
+            onSuccess(bibitem.trim())
         else
             onError("Server returned an error")
             console.error response.statusCode
