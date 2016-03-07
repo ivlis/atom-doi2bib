@@ -14,31 +14,23 @@ module.exports = Doi2bib =
 
 
     convert: ->
-        notifications = atom.notifications
-
         if editor = atom.workspace.getActiveTextEditor()
+
+            notifications = atom.notifications
             doi = editor.getSelectedText()
 
-            # TODO: Make the matches more correct
-            if not doi.match(/^10\..*/) or doi.match(/\s+/)
-                notifications.addError("Selected text does not seem like a DOI")
-                return null
+            showError = (error) ->
+                notifications.addError error
 
-            url = "http://dx.doi.org/#{doi}"
-            options =
-                url: url
-                headers:
-                    Accept: 'text/bibliography; style=bibtex'
+            insertBibitem = (bibitem) ->
+                editor.insertText bibitem
 
-            request = require 'request'
-            request options, (error, response, body) ->
-                if error
-                    console.error(error)
-                else if response.statusCode == 404
-                    notifications.addError("DOI cannot be found on server")
-                else if response.statusCode == 200
-                    bibitem = body.replace /},\ /g, "},\n\t"
-                    editor.insertText(bibitem)
-                else
-                    notifications.addError("Server returned an error")
-                    console.console.error response.statusCode
+            f = null
+
+            if doi.match(/^10\..*/) and not doi.match(/\s+/)
+                f = require './dxdoiorg'
+
+            if f is null
+                showError "Cannot find a valid id in the selection"
+            else
+                f doi, insertBibitem, showError
