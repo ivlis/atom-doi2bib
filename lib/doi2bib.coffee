@@ -29,8 +29,10 @@ module.exports = Doi2bib =
 
       if doi.match(/^10\..*/) and not doi.match(/\s+/)
         f = require './dxdoiorg'
-      if doi.match(/^\d{4}\.\d{4,5}$/) or doi.match(/^\S+\/\d{7}$/)
+      else if doi.match(/^\d{4}\.\d{4,5}$/) or doi.match(/^\S+\/\d{7}$/)
         f = require './arxivorg'
+      else if doi.match(/\d{10}/) or doi.match(/\d{13}/)
+        f = require './isbn'
 
       if f is null
         showError "Cannot find a valid id in the selection"
