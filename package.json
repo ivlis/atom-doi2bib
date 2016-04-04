@@ -1,14 +1,14 @@
 {
   "name": "doi2bib",
   "main": "./lib/doi2bib",
-  "version": "0.0.0",
-  "description": "Look up a bibliographic record by a DOI string",
+  "version": "0.0.1",
+  "description": "Look up a bibliographic BiBTeX record by an ID",
   "keywords": [
   ],
   "activationCommands": {
     "atom-workspace": "doi2bib:convert"
   },
-  "repository": "https://github.com/atom/doi2bib",
+  "repository": "https://github.com/ivlis/atom-doi2bib",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
