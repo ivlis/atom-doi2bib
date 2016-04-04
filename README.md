@@ -1,5 +1,9 @@
 # doi2bib package
 
-A short description of your package.
+This package allows one to convert an id of a document to a BiBTeX record. Currenty the follwoing ids are supported:
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+* DOI via [dx.doi.org](http://dx.doi.org)
+* [arXiv.org](http://arxiv.org) via its API
+* ISBN via http://manas.tungare.name/software/isbn-to-bibtex/
+
+To use, type (or paste) an id into an editor window, select it and press the default keymap: `ctrl-alt-shift-d`. The id will be changed with a BiBTeX record shortly.
