@@ -1,10 +1,9 @@
 {
   "name": "doi2bib",
   "main": "./lib/doi2bib",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Look up a bibliographic BiBTeX record by an ID",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {
     "atom-workspace": "doi2bib:convert"
   },
@@ -14,7 +13,7 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-      "request": "2.69.0",
-      "xml2js": "0.4.16"
+    "request": "2.69.0",
+    "xml2js": "0.4.16"
   }
 }
