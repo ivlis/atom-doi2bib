@@ -4,9 +4,6 @@
   "version": "0.1.0",
   "description": "Look up a bibliographic BiBTeX record by an ID",
   "keywords": [],
-  "activationCommands": {
-    "atom-workspace": "doi2bib:convert"
-  },
   "repository": "https://github.com/ivlis/atom-doi2bib",
   "license": "MIT",
   "engines": {

@@ -4,10 +4,11 @@ Doi2bib = require '../lib/doi2bib'
 #
 # To run a specific `it` or `describe` block add an `f` to the front (e.g. `fit`
 # or `fdescribe`). Remove the `f` to unfocus the block.
-
-describe "Doi2bib", ->
-  [workspaceElement, activationPromise] = []
+describe "doi2bib", ->
 
   beforeEach ->
-    workspaceElement = atom.views.getView(atom.workspace)
-    activationPromise = atom.packages.activatePackage('doi2bib')
+    waitsForPromise ->
+      atom.packages.activatePackage('doi2bib')
+
+  it 'it loads', ->
+    expect(atom.packages.isPackageActive('doi2bib')).toBe true
